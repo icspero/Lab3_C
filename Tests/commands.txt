@@ -1,0 +1,5 @@
+g++ -g -O0 --coverage -o Test_Main Test_Main.cpp
+./Test_Main
+lcov --capture --directory . --output-file Test_Main.info --exclude "/usr/include/*" --exclude "/usr/lib/*" --exclude "/boost/*"
+genhtml Test_Main.info --output-directory Test_Main_html
+xdg-open Test_Main_html/index.html
