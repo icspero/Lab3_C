@@ -1,0 +1,3 @@
+g++ -o Benchmark_Main Benchmark_Main.cpp -I/path/to/boost/include -L/path/to/boost/lib -lboost_system -lboost_timer
+./Benchmark_Main
+xdg-open Benchmarks.html
