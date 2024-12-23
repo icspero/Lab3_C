@@ -42,15 +42,11 @@ int main(int argc, char* argv[]) {
 
     indexStr.erase(0, indexStr.find_first_not_of(" \t"));
 
-    string serialization;
-    cout << "Выберите сериализацию(бинарный формат - 1; текстовый формат - 2): ";
-    cin >> serialization;
-
     try {
         if (!commandWord.empty() && commandWord.at(0) == 'M'){
-            if (serialization == "2") {
+            if (filename.find(".txt") != string::npos)  {
                 array.WritingFromFileToArray(array, filename);
-            } else {
+            } else if (filename.find(".bin") != string::npos) {
                 array.BinaryDeserialization(filename);
             }
             if (commandWord == "MPUSH") {
@@ -80,18 +76,18 @@ int main(int argc, char* argv[]) {
             } else if (commandWord == "MREAD") {
                 array.MREAD();
             }
-            if(serialization == "2"){
+            if(filename.find(".txt") != string::npos){
                 array.WritingFromArrayToFile(array, filename);
             } 
-            else {
+            else if (filename.find(".bin") != string::npos){
                 array.BinarySerialization(filename);
             }
         }
         else if (!commandWord.empty() && commandWord.at(0) == 'Q'){
-            if (serialization == "2") {
+            if (filename.find(".txt") != string::npos) {
                 queue.WritingFromFileToQueue(queue, filename);
             }
-            else {
+            else if (filename.find(".bin") != string::npos){
                 queue.BinaryDeserialization(filename);
             }
             if (commandWord == "QPUSH") {
@@ -105,14 +101,14 @@ int main(int argc, char* argv[]) {
             else if(commandWord == "QREAD"){
                 queue.QREAD();
             }
-            if (serialization == "2") {
+            if (filename.find(".txt") != string::npos) {
                 queue.WritingFromQueueToFile(queue, filename);
             }
-            else {
+            else if (filename.find(".bin") != string::npos){
                 queue.BinarySerialization(filename);
             }
         } else if (!commandWord.empty() && commandWord.at(0) == 'S') {
-            if (serialization == "2") {
+            if (filename.find(".txt") != string::npos) {
                 stack.WritingFromFileToStack(stack, filename);
             }
             else {
@@ -127,17 +123,17 @@ int main(int argc, char* argv[]) {
             if (commandWord == "SREAD") {
                 stack.SREAD();
             }
-            if (serialization == "2"){
+            if (filename.find(".txt") != string::npos){
                 stack.WritingFromStackToFile(stack, filename);
             }
-            else {
+            else if (filename.find(".bin") != string::npos){
                 stack.BinarySerialization(filename);
             }
         } else if (!commandWord.empty() && commandWord.at(0) == 'L' && commandWord.at(1) == 'O'){
-            if (serialization == "2") {
+            if (filename.find(".txt") != string::npos) {
                 singlyList.WritingFromFileToSinglyLinkedList(singlyList, filename);
             }
-            else {
+            else if (filename.find(".bin") != string::npos){
                 singlyList.BinaryDeserialization(filename);
             }
             if (commandWord == "LONEPUSH_head") {
@@ -161,17 +157,17 @@ int main(int argc, char* argv[]) {
             if (commandWord == "LONE_read") {
                 singlyList.LONE_read();
             }
-            if (serialization == "2") {
+            if (filename.find(".txt") != string::npos) {
                 singlyList.WritingFromSinglyLinkedListToFile(singlyList, filename);
             }
-            else {
+            else if (filename.find(".bin") != string::npos){
                 singlyList.BinarySerialization(filename);
             }
         } else if (!commandWord.empty() && commandWord.at(0) == 'L' && commandWord.at(1) == 'T'){
-            if (serialization == "2") {
+            if (filename.find(".txt") != string::npos) {
                 doublyList.WritingFromFileToDoublyLinkedList(doublyList, filename);
             }
-            else {
+            else if (filename.find(".bin") != string::npos){
                 doublyList.BinaryDeserialization(filename);
             }
             if (commandWord == "LTWOPUSH_head") {
@@ -195,17 +191,17 @@ int main(int argc, char* argv[]) {
             if (commandWord == "LTWO_read") {
                 doublyList.LTWO_read();
             }
-            if (serialization == "2") {
+            if (filename.find(".txt") != string::npos) {
                 doublyList.WritingFromDoublyLinkedListToFile(doublyList, filename);
             }
-            else {
+            else if (filename.find(".bin") != string::npos){
                 doublyList.BinarySerialization(filename);
             }
         } else if (!commandWord.empty() && commandWord.at(0) == 'H'){
-            if (serialization == "2") {
+            if (filename.find(".txt") != string::npos) {
                 hashTable.WritingFromFileToHashTable(hashTable, filename);
             }
-            else {
+            else if (filename.find(".bin") != string::npos){
                 hashTable.BinaryDeserialization(filename);
             }
             string key = indexStr;
@@ -227,17 +223,17 @@ int main(int argc, char* argv[]) {
             if (commandWord == "HREAD") {
                 hashTable.HREAD();
             }
-            if (serialization == "2") {
+            if (filename.find(".txt") != string::npos) {
                 hashTable.WritingFromHashTableToFile(hashTable, filename);
             }
-            else {
+            else if (filename.find(".bin") != string::npos){
                 hashTable.BinarySerialization(filename);
             }
         } else if (!commandWord.empty() && commandWord.at(0) == 'T'){
-            if (serialization == "2") {
+            if (filename.find(".txt") != string::npos) {
                 tree.TLoadFromFile(filename);
             }
-            else {
+            else if (filename.find(".bin") != string::npos){
                 tree.BinaryDeserialization(filename);
             }
             if (commandWord == "TINSERT") {
@@ -263,10 +259,10 @@ int main(int argc, char* argv[]) {
             if (commandWord == "TREAD") {
                 tree.TREAD();
             }
-            if (serialization == "2") {
+            if (filename.find(".txt") != string::npos) {
                 tree.TSaveToFileHelper(filename);
             }
-            else {
+            else if (filename.find(".bin") != string::npos){
                 tree.BinarySerialization(filename);
             }
         } else {
